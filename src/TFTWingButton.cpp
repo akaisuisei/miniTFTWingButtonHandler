@@ -5,12 +5,13 @@ TFTWingButton::TFTWingButton(int double_time, int long_time) {
   _long_time = long_time;
 }
 
-bool TFTWingButton::setup() {
+bool TFTWingButton::setup(bool turn_on_backlight, bool reset_display){
   if (!ss.begin())
     return false;
-  ss.tftReset();
-  ss.setBacklight(TFTWING_BACKLIGHT_ON);
-  for (int i = 0; i < 7; ++i) {
+  if (reset_display)
+    ss.tftReset();
+  ss.setBacklight(turn_on_backlight ? TFTWING_BACKLIGHT_ON : TFTWING_BACKLIGHT_OFF);
+  for(int i = 0; i < 7; ++i) {
     _previous_states[i] = false;
     _states[i] = 0;
     _last_pushed[i] = 0;

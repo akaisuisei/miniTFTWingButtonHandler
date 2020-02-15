@@ -29,7 +29,7 @@ class TFTWingButton {
 
   public:
     TFTWingButton(int double_time = 400, int long_time = 800);
-    bool setup();
+    bool setup(bool turn_on_backlight = true, bool reset_display = true);
     void loop();
     void setClickCallback(CallbackFunction f);
     void setDoubleClickCallback(CallbackFunction f);
